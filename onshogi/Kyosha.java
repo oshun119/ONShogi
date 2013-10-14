@@ -8,6 +8,10 @@ import java.util.HashSet;
  * @author nisshy
  */
 public class Kyosha extends Piece {
+	/**
+	 * 香車のインスタンスを生成する．
+	 * @param isBlackPiece この駒が先手番の駒か否か
+	 */
 	public Kyosha(boolean isBlackPiece) {
 		super(isBlackPiece);
 	}

@@ -4,10 +4,14 @@ import java.awt.Point;
 import java.util.HashSet;
 
 /**
- *  歩を表すクラス．
+ *  歩のクラス．
  *  @author nisshy
  */
 public class Fu extends Piece {
+	/**
+	 * 歩のインスタンスを生成する．
+	 * @param isBlackPiece この駒が先手番の駒か否か
+	 */
 	public Fu(boolean isBlackPiece) {
 		super(isBlackPiece);
 	}

@@ -4,10 +4,14 @@ import java.awt.Point;
 import java.util.HashSet;
 
 /**
- * 金を表す駒クラス．
+ * 金の駒クラス．
  * @author nisshy
  */
 public class Kin extends Piece {
+	/**
+	 * 金のインスタンスを生成する．
+	 * @param isBlackPiece この駒が先手番の駒か否か
+	 */
 	public Kin(boolean isBlackPiece) {
 		super(isBlackPiece);
 	}

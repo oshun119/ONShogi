@@ -3,7 +3,15 @@ package onshogi;
 import java.awt.Point;
 import java.util.HashSet;
 
+/**
+ * 角のクラス．
+ * @author nisshy
+ */
 public class Kaku extends Piece {
+	/**
+	 * 角のインスタンスを生成する．
+	 * @param isBlackPiece この駒が先手番の駒か否か
+	 */
 	public Kaku(boolean isBlackPiece) {
 		super(isBlackPiece);
 	}

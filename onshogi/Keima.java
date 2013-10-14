@@ -4,10 +4,14 @@ import java.awt.Point;
 import java.util.HashSet;
 
 /**
- * 桂馬を表す駒クラス．
+ * 桂馬の駒クラス．
  * @author nisshy
  */
 public class Keima extends Piece {
+	/**
+	 * 桂馬のインスタンスを生成する．
+	 * @param isBlackPiece この駒が先手番の駒か否か
+	 */
 	public Keima(boolean isBlackPiece) {
 		super(isBlackPiece);
 	}

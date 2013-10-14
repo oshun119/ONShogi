@@ -4,10 +4,14 @@ import java.awt.Point;
 import java.util.HashSet;
 
 /**
- * 飛車を表す駒クラス． 
+ * 飛車の駒クラス． 
  * @author nisshy
  */
 public class Hisha extends Piece {
+	/**
+	 * 飛車のインスタンスを生成する．
+	 * @param isBlackPiece この駒が先手番の駒か否か
+	 */
 	public Hisha(boolean isBlackPiece) {
 		super(isBlackPiece);
 	}
