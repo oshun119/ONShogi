@@ -1,8 +1,7 @@
-
 package onshogi;
 
 /**
- * Playerを継承 
+ * Playerを継承. 人からの手の入力をAdministratorに仲介するクラス.
  * @author oshun119
  */
 public class Human extends Player {

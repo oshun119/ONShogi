@@ -1,10 +1,10 @@
 package onshogi;
 
 /**
- * プレイヤーはこのクラスを継承して実装する. 人間ならばHumanを用いる.
+ * このクラスを継承し, 操作をAdministratorに仲介する.
  * @author oshun119 
  */
-public class Player extends Object{
+abstract public class Player extends Object{
 	
 	/**
 	 * 先手:true, 後手:falseとする
@@ -20,9 +20,7 @@ public class Player extends Object{
 	 * @param currentState 現在の盤面の状態
 	 * @return 候補の手を返す
 	 */
-	public Move nextMove(State currentState) {
-		return new Move();
-	}
+	abstract public Move nextMove(State currentState);
 
 	public String toString() {
 		return "";
