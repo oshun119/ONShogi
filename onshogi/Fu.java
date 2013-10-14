@@ -7,4 +7,5 @@ public class Fu extends Piece {
 	public Fu() {
 		
 	}
+	
 }
