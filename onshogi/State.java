@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * 盤面の状況を表すStateクラス．
- * @author nishidamasahiko
+ * @author nisshy
  */
 public class State extends Object{
 	public static final int SIZE = 11; 
