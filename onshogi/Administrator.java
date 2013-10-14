@@ -47,7 +47,7 @@ public class Administrator extends Object implements Runnable {
 	 * @param blackPlayer 先手のPlayerインスタンス
 	 * @param whitePlayer 後手のPlayerインスタンス
 	 * @param initialState 盤面の初期状態
-	 * @param isBlack 先手の手番か否か
+	 * @param isBlackTurn 先手の手番か否か
 	 */
 	public Administrator(Player blackPlayer, Player whitePlayer, State initialState, boolean isBlackTurn) {
 		this.blackPlayer = blackPlayer;
