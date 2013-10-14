@@ -1,5 +1,7 @@
 package onshogi;
 
+import java.awt.Point;
+
 /**
  * 適当な手を返すAI.
  * @author oshun119 
@@ -12,7 +14,7 @@ public class RandomAI extends Player {
 	@Override
 	public Move nextMove(State currentState) {
 		
-		return new Move();
+		return new Move(new Point(), new  Point(), true);
 	}
 	
 	@Override
