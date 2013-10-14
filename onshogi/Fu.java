@@ -3,8 +3,8 @@ package onshogi;
 /**
  *
  */
-public class Hu extends Piece {
-	public Hu() {
+public class Fu extends Piece {
+	public Fu() {
 		
 	}
 }
