@@ -22,6 +22,12 @@ abstract public class Piece {
 	}
 	
 	/**
+	 * この駒の移動バターンを応答する．
+	 * @return 移動パターンを表すPointのHashSet
+	 */
+	abstract HashSet<Point> getMovePattern();
+
+	/**
 	 * この駒が成っているか否かを応答する．
 	 * @return この駒が成っているか否か．
 	 */
@@ -34,15 +40,6 @@ abstract public class Piece {
 	public boolean isBlackPiece() {
 		return this.isBlackPiece;
 	}
-
-	/**
-	 * この駒が，指定された手番の駒かを応答する．
-	 * @param isBlack 先手番か否か
-	 * @return 指定された手番の駒が否か
-	 */
-	public boolean isSelfPiece(boolean isBlack) {
-		return isBlack ? this.isBlackPiece : !this.isBlackPiece;
-	}
 	
 	/**
 	 * この駒が，指定された手番から見て，相手番の駒かを応答する．
@@ -54,8 +51,18 @@ abstract public class Piece {
 	}
 	
 	/**
-	 * この駒の移動バターンを応答する．
-	 * @return 移動パターンを表すPointのHashSet
+	 * この駒が，指定された手番の駒かを応答する．
+	 * @param isBlack 先手番か否か
+	 * @return 指定された手番の駒が否か
 	 */
-	abstract HashSet<Point> getMovePattern();
+	public boolean isSelfPiece(boolean isBlack) {
+		return isBlack ? this.isBlackPiece : !this.isBlackPiece;
+	}
+
+	/**
+	 * この駒が成れる場合は，成駒のインスタンスを応答する．
+	 * そうでなければ，nullを応答する．
+	 * @return この駒が，成った後の駒のインスタンス
+	 */
+	abstract public Piece getPromoted();
 }
