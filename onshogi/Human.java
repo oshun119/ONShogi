@@ -1,5 +1,7 @@
 package onshogi;
 
+import java.awt.Point;
+
 /**
  * Playerを継承. 人からの手の入力をAdministratorに仲介するクラス.
  * @author oshun119
@@ -12,7 +14,7 @@ public class Human extends Player {
 	
 	@Override
 	public Move nextMove(State currentState) {
-		return new Move();
+		return new Move(new Point(), new  Point(), true);
 	}
 	
 	@Override
