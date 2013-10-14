@@ -2,17 +2,23 @@
 package onshogi;
 
 /**
- * 
+ * Playerを継承 
+ * @author oshun119
  */
 public class Human extends Player {
-	
-	/**
-	 * 先手:true, 後手:falseとする
-	 */
-	private boolean isBlack;
-	
+
 	public Human(boolean isBlack) {
-		this.isBlack = isBlack;
+		super(isBlack);
+	}
+	
+	@Override
+	public Move nextMove(State currentState) {
+		return new Move();
+	}
+	
+	@Override
+	public String toString() {
+		return "";
 	}
 	
 }
