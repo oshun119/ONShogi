@@ -1,7 +1,7 @@
 package onshogi;
 
 /**
- * oshun
+ * 
  */
 public class Administrator extends Object implements Runnable {
 	public Administrator() {
