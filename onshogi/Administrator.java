@@ -11,7 +11,7 @@ public class Administrator extends Object implements Runnable {
 	@Override
 	public void run() {
 		// TODO 自動生成されたメソッド・スタブ
-		
+		//hoge
 	}
 
 }
