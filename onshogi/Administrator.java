@@ -2,6 +2,7 @@ package onshogi;
 
 /**
  * 対局の管理を行い，進行するクラス．
+ * @author nisshy
  */
 public class Administrator extends Object implements Runnable {
 	/**
