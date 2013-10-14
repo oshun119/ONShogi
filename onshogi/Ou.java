@@ -9,7 +9,24 @@ import java.util.HashSet;
  */
 public class Ou extends Piece {
 	
+	/**
+	 * このインスタンスが一番初めに生成されたとき,
+	 * この駒の移動できる座標をmovePatternに格納する.
+	 */
 	private static HashSet<Point> movePattern;
+	static {
+		movePattern = new HashSet<Point>();
+		movePattern.add(new Point(0,-1));
+		movePattern.add(new Point(0,1));
+		movePattern.add(new Point(1,-1));
+		movePattern.add(new Point(1,0));
+		movePattern.add(new Point(1,1));
+		movePattern.add(new Point(-1,-1));
+		movePattern.add(new Point(-1,0));
+		movePattern.add(new Point(-1,1));
+		//System.out.println("static init test");
+	}
+	
 	
 	public Ou(boolean isBlackPiece) {
 		super(isBlackPiece);
