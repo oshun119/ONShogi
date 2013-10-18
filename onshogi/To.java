@@ -40,4 +40,9 @@ public class To extends Piece {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return this.isBlackPiece ? " と" : "vと";
+	}
 }

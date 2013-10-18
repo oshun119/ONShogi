@@ -40,4 +40,8 @@ public class Fu extends Piece {
 		return null;
 	}
 	
+	@Override
+	public String toString() {
+		return this.isBlackPiece ? " 歩" : "v歩";
+	}
 }

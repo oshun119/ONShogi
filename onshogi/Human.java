@@ -5,6 +5,7 @@ import java.awt.Point;
 /**
  * Playerを継承. 人からの手の入力をAdministratorに仲介するクラス.
  * @author oshun119
+ * @author nisshy
  */
 public class Human extends Player {
 
@@ -19,7 +20,6 @@ public class Human extends Player {
 	
 	@Override
 	public String toString() {
-		return "";
+		return "You";
 	}
-	
 }

@@ -21,9 +21,4 @@ abstract public class Player extends Object{
 	 * @return 候補の手を返す
 	 */
 	abstract public Move nextMove(State currentState);
-
-	public String toString() {
-		return "";
-	}
-	
 }
