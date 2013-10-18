@@ -46,13 +46,13 @@ public class State extends Object{
 		this.capturedPieces.put(new Kyosha(false), 0);
 		this.capturedPieces.put(new Keima(true), 0);
 		this.capturedPieces.put(new Keima(false), 0);
-		this.capturedPieces.put(new Gin (false), 0);
+		this.capturedPieces.put(new Gin (true), 0);
 		this.capturedPieces.put(new Gin(false), 0);
+		this.capturedPieces.put(new Kin(true), 0);
 		this.capturedPieces.put(new Kin(false), 0);
-		this.capturedPieces.put(new Kin(false), 0);
+		this.capturedPieces.put(new Kaku(true), 0);
 		this.capturedPieces.put(new Kaku(false), 0);
-		this.capturedPieces.put(new Kaku(false), 0);
-		this.capturedPieces.put(new Hisha(false), 0);
+		this.capturedPieces.put(new Hisha(true), 0);
 		this.capturedPieces.put(new Hisha(false), 0);
 		//盤面の初期化
 		this.board[9][1] = new Kyosha(true);
