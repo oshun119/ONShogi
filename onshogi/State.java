@@ -30,7 +30,8 @@ public class State extends Object{
 	
 	public State(Piece[][] board, HashMap<Piece, Integer> capturedPieces) {
 		this.board = board.clone();
-		this.capturedPieces = (HashMap<Piece, Integer>)capturedPieces.clone();
+		//this.capturedPieces = (HashMap<Piece, Integer>)capturedPieces.clone(); 
+		this.capturedPieces = new HashMap<Piece, Integer>(capturedPieces);
 	}
 	
 	/**
