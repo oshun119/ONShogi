@@ -10,7 +10,9 @@ public class State extends Object{
 	public static final int SIZE = 11; 
 	
 	/**
-	 * 盤面上の状態
+	 * 盤面上の状態．
+	 * 将棋の棋譜の表し方に合わせて，右上を「1一」とする座標系である．
+	 * 1つ目の添字が筋(横方向)，2つ目の添字が段(縦方向)の位置を表す．
 	 */
 	private Piece[][] board = new Piece[SIZE][SIZE];
 	
@@ -26,10 +28,22 @@ public class State extends Object{
 		this.init();
 	}
 	
+	public State(Piece[][] board, HashMap<Piece, Integer> capturedPieces) {
+		this.board = board.clone();
+		this.capturedPieces = (HashMap<Piece, Integer>)capturedPieces.clone();
+	}
+	
 	/**
 	 * 対局の初期状態に初期化する．
 	 */
 	public void init() {
+		this.capturedPieces = new HashMap<Piece, Integer>();
+		this.capturedPieces.put(new Fu(true), 0);
+		this.capturedPieces.put(new Fu(false), 0);
+		this.capturedPieces.put(new Kyosha(true), 0);
+		
+		this.board[1][5] = new Ou(false);
+		this.board[8][8] = new Hisha(true);
 	}
 
 	/**
