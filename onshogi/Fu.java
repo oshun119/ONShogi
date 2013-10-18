@@ -34,4 +34,10 @@ public class Fu extends Piece {
 		return null;
 	}
 	
+	@Override
+	public Piece getOriginal() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+	
 }

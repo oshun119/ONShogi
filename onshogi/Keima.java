@@ -32,5 +32,11 @@ public class Keima extends Piece {
 	public Piece getPromoted() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
+	}
+
+	@Override
+	public Piece getOriginal() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}	
 }

@@ -60,6 +60,13 @@ abstract public class Piece {
 	}
 
 	/**
+	 * この駒が成駒であれば，成る前の駒を返す．
+	 * そうでなければ，thisを返す．
+	 * @return 
+	 */
+	abstract public Piece getOriginal();
+
+	/**
 	 * この駒が成れる場合は，成駒のインスタンスを応答する．
 	 * そうでなければ，nullを応答する．
 	 * @return この駒が，成った後の駒のインスタンス
