@@ -147,19 +147,22 @@ public class State extends Object implements Cloneable {
 				builder.append(entry.getKey().toString() + entry.getValue() + " ");
 		}
 		builder.append("\n");
-		builder.append("  9　8　7　6　5　4　3　2　1 \n");
-		builder.append("----------------------------\n");
+		builder.append("  9   8   7   6   5   4   3   2   1\n");
+		builder.append("+---+---+---+---+---+---+---+---+---+\n");
 		for(int i = 1; i < 10; i++) {
 			builder.append("|");
 			for(int j = 9 ; j > 0; j--) {
 				if(this.board[j][i] == null) 
-					builder.append(" ・");
+					builder.append("   ");
+				
 				else
 					builder.append(this.board[j][i]);
+				builder.append("|");
 			}
-			builder.append("|"+i+"\n");
+			builder.append(i+"\n");
+			builder.append("+---+---+---+---+---+---+---+---+---+\n");
 		}
-		builder.append("----------------------------\n");
+		
 		builder.append("先手 持ち駒:");
 		for(Map.Entry<Piece, Integer> entry: bleakCapturedPieces.entrySet()) {
 			if(entry.getValue() >= 1)
@@ -167,4 +170,5 @@ public class State extends Object implements Cloneable {
 		}
 		return builder.toString();
 	}
+	
 }
