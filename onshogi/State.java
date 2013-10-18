@@ -7,6 +7,12 @@ import java.util.HashMap;
  * @author nisshy
  */
 public class State extends Object implements Cloneable {
+	/*
+	public static void main(String[] arms) {
+		State s = new State();
+		System.out.println(s.toString());
+	}*/
+	
 	public static final int SIZE = 11; 
 	
 	/**
@@ -65,31 +71,31 @@ public class State extends Object implements Cloneable {
 		this.capturedPieces.put(new Hisha(true), 0);
 		this.capturedPieces.put(new Hisha(false), 0);
 		//盤面の初期化
-		this.board[9][1] = new Kyosha(true);
-		this.board[8][1] = new Keima(true);
-		this.board[7][1] = new Gin(true);
-		this.board[6][1] = new Kin(true);
-		this.board[5][1] = new Ou(true);
-		this.board[4][1] = new Kin(true);
-		this.board[3][1] = new Gin(true);
-		this.board[2][1] = new Keima(true);
-		this.board[1][1] = new Kyosha(true);
-		this.board[2][2] = new Kaku(true);
-		this.board[8][2] = new Hisha(true);
-		this.board[9][9] = new Kyosha(false);
-		this.board[8][9] = new Keima(false);
-		this.board[7][9] = new Gin(false);
-		this.board[6][9] = new Kin(false);
-		this.board[5][9] = new Ou(false);
-		this.board[4][9] = new Kin(false);
-		this.board[3][9] = new Gin(false);
-		this.board[2][9] = new Keima(false);
-		this.board[1][9] = new Kyosha(false);
+		this.board[9][1] = new Kyosha(false);
+		this.board[8][1] = new Keima(false);
+		this.board[7][1] = new Gin(false);
+		this.board[6][1] = new Kin(false);
+		this.board[5][1] = new Ou(false);
+		this.board[4][1] = new Kin(false);
+		this.board[3][1] = new Gin(false);
+		this.board[2][1] = new Keima(false);
+		this.board[1][1] = new Kyosha(false);
 		this.board[2][2] = new Kaku(false);
 		this.board[8][2] = new Hisha(false);
+		this.board[9][9] = new Kyosha(true);
+		this.board[8][9] = new Keima(true);
+		this.board[7][9] = new Gin(true);
+		this.board[6][9] = new Kin(true);
+		this.board[5][9] = new Ou(true);
+		this.board[4][9] = new Kin(true);
+		this.board[3][9] = new Gin(true);
+		this.board[2][9] = new Keima(true);
+		this.board[1][9] = new Kyosha(true);
+		this.board[8][8] = new Kaku(true);
+		this.board[2][8] = new Hisha(true);
 		for(int i = 1; i < 10; i++) {
-			this.board[i][3] = new Fu(true);
-			this.board[i][7] = new Fu(false);
+			this.board[i][3] = new Fu(false);
+			this.board[i][7] = new Fu(true);
 		}
 		
 	}
@@ -108,7 +114,7 @@ public class State extends Object implements Cloneable {
 	 * @return moveが合法手か否か．
 	 */
 	public boolean isLegalMove(Move move) {
-		return true;
+		return false;
 	}
 
 	/**
@@ -116,5 +122,27 @@ public class State extends Object implements Cloneable {
 	 * @param move 適用する手．
 	 */
 	public void makeAMove(Move move) {
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("先手 持ち駒:\n");
+		builder.append("  9　8　7　6　5　4　3　2　1 \n");
+		builder.append("----------------------------\n");
+		for(int i = 1; i < 10; i++) {
+			builder.append("|");
+			for(int j = 9 ; j > 0; j--) {
+				if(this.board[j][i] == null) 
+					builder.append(" ・");
+				else
+					builder.append(this.board[j][i]);
+			}
+			builder.append("|"+i+"\n");
+		}
+		builder.append("----------------------------\n");
+		builder.append("後手 持ち駒:");
+		
+		return builder.toString();
 	}
 }
