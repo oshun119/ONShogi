@@ -6,7 +6,7 @@ import java.util.HashMap;
  * 盤面の状況を表すStateクラス．
  * @author nisshy
  */
-public class State extends Object{
+public class State extends Object implements Cloneable {
 	public static final int SIZE = 11; 
 	
 	/**
@@ -32,6 +32,16 @@ public class State extends Object{
 		this.board = board.clone();
 		//this.capturedPieces = (HashMap<Piece, Integer>)capturedPieces.clone(); 
 		this.capturedPieces = new HashMap<Piece, Integer>(capturedPieces);
+	}
+	
+	@Override
+	public State clone() {
+		try {
+			return (State)super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new InternalError(e.toString());
+		}
+		
 	}
 	
 	/**
