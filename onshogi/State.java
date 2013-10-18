@@ -1,17 +1,20 @@
 package onshogi;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 
 /**
  * 盤面の状況を表すStateクラス．
  * @author nisshy
  */
 public class State extends Object implements Cloneable {
-	/*
+	
 	public static void main(String[] arms) {
 		State s = new State();
 		System.out.println(s.toString());
-	}*/
+	}
 	
 	public static final int SIZE = 11; 
 	
@@ -23,9 +26,14 @@ public class State extends Object implements Cloneable {
 	private Piece[][] board = new Piece[SIZE][SIZE];
 	
 	/**
-	 * 持ち駒の数
+	 * 先手の持ち駒の数
 	 */
-	private HashMap<Piece, Integer> capturedPieces;
+	private LinkedHashMap<Piece, Integer> bleakCapturedPieces;
+	
+	/**
+	 * 後手の持ち駒の数
+	 */
+	private LinkedHashMap<Piece, Integer> whiteCapturedPieces;
 	
 	/**
 	 * 対局の初期状態に初期化された，インスタンスを生成する．
@@ -34,10 +42,11 @@ public class State extends Object implements Cloneable {
 		this.init();
 	}
 	
-	public State(Piece[][] board, HashMap<Piece, Integer> capturedPieces) {
-		this.board = board.clone();
-		//this.capturedPieces = (HashMap<Piece, Integer>)capturedPieces.clone(); 
-		this.capturedPieces = new HashMap<Piece, Integer>(capturedPieces);
+	public State(Piece[][] board, HashMap<Piece, Integer> bleakCapturedPieces, HashMap<Piece, Integer> whiteCapturedPieces) {
+		this.board = board.clone(); 
+		this.bleakCapturedPieces = new LinkedHashMap<Piece, Integer>(bleakCapturedPieces);
+		this.whiteCapturedPieces = new LinkedHashMap<Piece, Integer>(whiteCapturedPieces);
+		
 	}
 	
 	@Override
@@ -55,21 +64,22 @@ public class State extends Object implements Cloneable {
 	 */
 	public void init() {
 		//持ち駒の初期化
-		this.capturedPieces = new HashMap<Piece, Integer>();
-		this.capturedPieces.put(new Fu(true), 0);
-		this.capturedPieces.put(new Fu(false), 0);
-		this.capturedPieces.put(new Kyosha(true), 0);
-		this.capturedPieces.put(new Kyosha(false), 0);
-		this.capturedPieces.put(new Keima(true), 0);
-		this.capturedPieces.put(new Keima(false), 0);
-		this.capturedPieces.put(new Gin (true), 0);
-		this.capturedPieces.put(new Gin(false), 0);
-		this.capturedPieces.put(new Kin(true), 0);
-		this.capturedPieces.put(new Kin(false), 0);
-		this.capturedPieces.put(new Kaku(true), 0);
-		this.capturedPieces.put(new Kaku(false), 0);
-		this.capturedPieces.put(new Hisha(true), 0);
-		this.capturedPieces.put(new Hisha(false), 0);
+		this.bleakCapturedPieces = new LinkedHashMap<Piece, Integer>();
+		this.bleakCapturedPieces.put(new Fu(true), 0);
+		this.bleakCapturedPieces.put(new Kyosha(true), 0);
+		this.bleakCapturedPieces.put(new Keima(true), 0);
+		this.bleakCapturedPieces.put(new Gin (true), 0);
+		this.bleakCapturedPieces.put(new Kin(true), 0);
+		this.bleakCapturedPieces.put(new Kaku(true), 0);
+		this.bleakCapturedPieces.put(new Hisha(true), 0);
+		this.whiteCapturedPieces = new LinkedHashMap<Piece, Integer>();
+		this.whiteCapturedPieces.put(new Fu(false), 0);
+		this.whiteCapturedPieces.put(new Kyosha(false), 0);
+		this.whiteCapturedPieces.put(new Keima(false), 0);
+		this.whiteCapturedPieces.put(new Gin(false), 0);
+		this.whiteCapturedPieces.put(new Kin(false), 0);
+		this.whiteCapturedPieces.put(new Kaku(false), 0);
+		this.whiteCapturedPieces.put(new Hisha(false), 0);
 		//盤面の初期化
 		this.board[9][1] = new Kyosha(false);
 		this.board[8][1] = new Keima(false);
@@ -124,10 +134,19 @@ public class State extends Object implements Cloneable {
 	public void makeAMove(Move move) {
 	}
 	
+	public void CapturedPieces() {
+		
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("先手 持ち駒:\n");
+		builder.append("後手 持ち駒:");
+		for(Map.Entry<Piece, Integer> entry: whiteCapturedPieces.entrySet()) {
+			if(entry.getValue() >= 1)
+				builder.append(entry.getKey().toString() + entry.getValue() + " ");
+		}
+		builder.append("\n");
 		builder.append("  9　8　7　6　5　4　3　2　1 \n");
 		builder.append("----------------------------\n");
 		for(int i = 1; i < 10; i++) {
@@ -141,8 +160,11 @@ public class State extends Object implements Cloneable {
 			builder.append("|"+i+"\n");
 		}
 		builder.append("----------------------------\n");
-		builder.append("後手 持ち駒:");
-		
+		builder.append("先手 持ち駒:");
+		for(Map.Entry<Piece, Integer> entry: bleakCapturedPieces.entrySet()) {
+			if(entry.getValue() >= 1)
+				builder.append(entry.getKey().toString() + entry.getValue() + " ");
+		}
 		return builder.toString();
 	}
 }
