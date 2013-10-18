@@ -134,18 +134,25 @@ public class State extends Object implements Cloneable {
 	public void makeAMove(Move move) {
 	}
 	
-	public void CapturedPieces() {
-		
+	/**
+	 * 持ち駒をStringにして返す.
+	 * @param capturedPieces 文字列に変換したい持ち駒
+	 * @return 持ち駒の文字列表現
+	 */
+	public String convertCapturedPieces(LinkedHashMap<Piece, Integer> capturedPieces) {
+		StringBuilder builder = new StringBuilder();
+		for(Map.Entry<Piece, Integer> entry: capturedPieces.entrySet()) {
+			if(entry.getValue() >= 1)
+				builder.append(entry.getKey().toString() + entry.getValue() + " ");
+		}
+		return builder.toString();
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("後手 持ち駒:");
-		for(Map.Entry<Piece, Integer> entry: whiteCapturedPieces.entrySet()) {
-			if(entry.getValue() >= 1)
-				builder.append(entry.getKey().toString() + entry.getValue() + " ");
-		}
+		builder.append(convertCapturedPieces(whiteCapturedPieces));
 		builder.append("\n");
 		builder.append("  9   8   7   6   5   4   3   2   1\n");
 		builder.append("+---+---+---+---+---+---+---+---+---+\n");
@@ -164,10 +171,7 @@ public class State extends Object implements Cloneable {
 		}
 		
 		builder.append("先手 持ち駒:");
-		for(Map.Entry<Piece, Integer> entry: bleakCapturedPieces.entrySet()) {
-			if(entry.getValue() >= 1)
-				builder.append(entry.getKey().toString() + entry.getValue() + " ");
-		}
+		builder.append(convertCapturedPieces(bleakCapturedPieces));
 		return builder.toString();
 	}
 	
