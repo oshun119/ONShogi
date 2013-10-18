@@ -2,7 +2,7 @@
 
 <project name="ONShogi" default="all" basedir=".">
 
-  <property name="package" value="ONShogi" />
+  <property name="package" value="onshogi" />
   <property name="packagenames" value="${package}" />
   <property name="destdir" value="./Classes" />
   <property name="docdir" value="./JavaDoc" />
@@ -73,7 +73,7 @@
   <target name="install" depends="all" description="install into application">
     <copy file="${package}.jar" todir="${instdir}" />
     <exec executable="chmod">
-      <arg line="755 ${instdir}/../../MacOS/JavaApplicationStub" />
+      <arg line="755 ${instdir}/../../MacOS/applet" />
     </exec>
 	<copy todir="${instdir}/Images">
 		<fileset dir="Images" includes="*.jpg" />
