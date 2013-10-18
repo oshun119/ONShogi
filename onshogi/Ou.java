@@ -55,4 +55,9 @@ public class Ou extends Piece {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return this.isBlackPiece ? " 王" : "v王";
+	}
 }

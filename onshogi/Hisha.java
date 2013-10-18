@@ -40,4 +40,8 @@ public class Hisha extends Piece {
 		return null;
 	}
 	
+	@Override
+	public String toString() {
+		return this.isBlackPiece ? " 飛" : "v飛";
+	}
 }

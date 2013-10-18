@@ -39,5 +39,9 @@ public class Gin extends Piece {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
-			
+
+	@Override
+	public String toString() {
+		return this.isBlackPiece ? " 銀" : "v銀";
+	}
 }

@@ -39,4 +39,9 @@ public class NariKei extends Piece {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return this.isBlackPiece ? " 圭" : "v圭";
+	}
 }
