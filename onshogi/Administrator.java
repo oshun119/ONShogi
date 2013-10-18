@@ -88,7 +88,7 @@ public class Administrator extends Object implements Runnable {
 		else
 			winner = this.blackPlayer.toString();
 		
-		System.out.println(winner + "win!");
+		System.out.println(winner + " win!");
 	}
 	
 	@Override

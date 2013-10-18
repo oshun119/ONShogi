@@ -24,23 +24,19 @@ public class NariKyo extends Piece {
 
 	@Override
 	boolean hasPromoted() {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		return true;
 	}
 
 	@Override
 	public Piece getPromoted() {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
 	public Piece getOriginal() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return new Kyosha(this.isBlackPiece);
 	}
 	
-
 	@Override
 	public String toString() {
 		return this.isBlackPiece ? " 杏" : "v杏";

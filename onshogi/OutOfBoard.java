@@ -18,25 +18,21 @@ public class OutOfBoard extends Piece {
 	
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
 	boolean hasPromoted() {
-		// TODO 自動生成されたメソッド・スタブ
 		return false;
 	}
 
 	@Override
 	public Piece getPromoted() {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 	
 	@Override
 	public Piece getOriginal() {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 	
