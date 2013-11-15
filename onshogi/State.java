@@ -16,14 +16,14 @@ public class State extends Object implements Cloneable {
 		System.out.println(s.toString());
 	}
 	
-	public static final int SIZE = 11; 
+	public static final int SIZE = 9; 
 	
 	/**
 	 * 盤面上の状態．
 	 * 将棋の棋譜の表し方に合わせて，右上を「1一」とする座標系である．
 	 * 1つ目の添字が筋(横方向)，2つ目の添字が段(縦方向)の位置を表す．
 	 */
-	private Piece[][] board = new Piece[SIZE][SIZE];
+	private Piece[][] board = new Piece[SIZE+2][SIZE+2];
 	
 	/**
 	 * 先手の持ち駒の数
@@ -156,9 +156,9 @@ public class State extends Object implements Cloneable {
 		builder.append("\n");
 		builder.append("  9   8   7   6   5   4   3   2   1\n");
 		builder.append("+---+---+---+---+---+---+---+---+---+\n");
-		for(int i = 1; i < 10; i++) {
+		for(int i = 1; i <= State.SIZE; i++) {
 			builder.append("|");
-			for(int j = 9 ; j > 0; j--) {
+			for(int j = State.SIZE ; j > 0; j--) {
 				if(this.board[j][i] == null) 
 					builder.append("   ");
 				

@@ -9,6 +9,26 @@ import java.util.HashSet;
  */
 public class Keima extends Piece {
 	/**
+	 * このインスタンスが一番初めに生成されたとき,
+	 * この駒の移動できる座標をmovePatternに格納する.
+	 * 先手と後手で分ける．
+	 */
+	private static HashSet<Point> blackMovePattern;
+	private static HashSet<Point> whiteMovePattern;
+	
+	static {
+		blackMovePattern = new HashSet<Point>();
+		blackMovePattern.add(new Point(-1,-2)); 
+		blackMovePattern.add(new Point(1,-2));
+	}
+	
+	static {
+		whiteMovePattern = new HashSet<Point>();
+		whiteMovePattern.add(new Point(-1,2)); 
+		whiteMovePattern.add(new Point(1,2)); 
+	}
+	
+	/**
 	 * 桂馬のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
 	 */
@@ -18,8 +38,7 @@ public class Keima extends Piece {
 
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return this.isBlackPiece ? Keima.blackMovePattern : Keima.whiteMovePattern;
 	}
 
 	@Override
@@ -34,7 +53,7 @@ public class Keima extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return this;
+		return new Keima(!isBlackPiece);
 	}	
 	
 	@Override

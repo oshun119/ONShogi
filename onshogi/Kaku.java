@@ -9,6 +9,35 @@ import java.util.HashSet;
  */
 public class Kaku extends Piece {
 	/**
+	 * このインスタンスが一番初めに生成されたとき,
+	 * この駒の移動できる座標をmovePatternに格納する.
+	 * 先手と後手で分ける．
+	 */
+	private static HashSet<Point> blackMovePattern;
+	private static HashSet<Point> whiteMovePattern;
+	
+	static {
+		blackMovePattern = new HashSet<Point>();
+		for(int i = 1; i < State.SIZE; i++) {
+			blackMovePattern.add(new Point(i,i));
+			blackMovePattern.add(new Point(-i,-i));
+			blackMovePattern.add(new Point(-i,i));
+			blackMovePattern.add(new Point(i,-i));
+		}
+	}
+	
+	static {
+		whiteMovePattern = new HashSet<Point>();
+		for(int i = 1; i < State.SIZE; i++) {
+			whiteMovePattern.add(new Point(i,i));
+			whiteMovePattern.add(new Point(-i,-i));
+			whiteMovePattern.add(new Point(-i,i));
+			whiteMovePattern.add(new Point(i,-i));
+		}
+	}
+	
+	
+	/**
 	 * 角のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
 	 */
@@ -18,8 +47,7 @@ public class Kaku extends Piece {
 
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return this.isBlackPiece ? Kaku.blackMovePattern : Kaku.whiteMovePattern;
 	}
 
 	@Override
@@ -34,7 +62,7 @@ public class Kaku extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return this;
+		return new Kaku(!isBlackPiece);
 	}
 
 	@Override

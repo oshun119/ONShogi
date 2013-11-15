@@ -9,6 +9,32 @@ import java.util.HashSet;
  */
 public class Gin extends Piece {
 	/**
+	 * このインスタンスが一番初めに生成されたとき,
+	 * この駒の移動できる座標をmovePatternに格納する.
+	 * 先手と後手で分ける．
+	 */
+	private static HashSet<Point> blackMovePattern;
+	private static HashSet<Point> whiteMovePattern;
+	
+	static {
+		blackMovePattern = new HashSet<Point>();
+		blackMovePattern.add(new Point(0,-1)); //前
+		blackMovePattern.add(new Point(1,-1)); //左前
+		blackMovePattern.add(new Point(-1,-1)); //右前
+		blackMovePattern.add(new Point(1,1)); //左後
+		blackMovePattern.add(new Point(-1,1)); //右後
+	}
+	
+	static {
+		whiteMovePattern = new HashSet<Point>();
+		whiteMovePattern.add(new Point(0,1)); //前
+		whiteMovePattern.add(new Point(-1,1)); //左前
+		whiteMovePattern.add(new Point(1,1)); //右前
+		whiteMovePattern.add(new Point(-1,-1)); //左後
+		whiteMovePattern.add(new Point(1,-1)); //右後
+	}
+	
+	/**
 	 * 銀のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
 	 */
@@ -18,8 +44,7 @@ public class Gin extends Piece {
 
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return this.isBlackPiece ? Gin.blackMovePattern : Gin.whiteMovePattern;
 	}
 
 	@Override
@@ -34,7 +59,7 @@ public class Gin extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return this;
+		return new Gin(!this.isBlackPiece);
 	}
 
 	@Override
