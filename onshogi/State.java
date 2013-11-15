@@ -152,11 +152,12 @@ public class State extends Object implements Cloneable {
 		Point amountOfMove = new Point(to.x - from.x, to.y - from.y);
 		Piece target = this.board[from.x][from.y];
 		
+		System.out.println(target.getMovePattern());
 		if(target == null || target.isBlackPiece() != isBlackTurn || !target.getMovePattern().contains(amountOfMove))
 			return false;
 		
 		if(amountOfMove.x == amountOfMove.y || amountOfMove.x == 0 || amountOfMove.y == 0) {
-			int maxXY = Math.max(amountOfMove.x, amountOfMove.y);
+			int maxXY = Math.max(Math.abs(amountOfMove.x), Math.abs(amountOfMove.y));
 			int deltaX = amountOfMove.x / maxXY;
 			int deltaY = amountOfMove.y / maxXY;
 			

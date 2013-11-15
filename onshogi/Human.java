@@ -28,7 +28,6 @@ public class Human extends Player {
 			String teban = isBlack ? "先手":"後手";
 			System.out.println(teban + "の手番です 手を入力して下さい >");
 			
-			
 			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 			String te = null;
 			try {
@@ -100,14 +99,14 @@ public class Human extends Player {
 			else {
 				boolean flag = false;
 				if(piece.length == 5){
-					if(piece[5] == '*') {
+					if(piece[4] == '*') {
 						flag = true;
 					}else{
 						System.out.println("入力が正しくありません: 5文字目は*のみです");
 						continue;
 					}
 				}
-				move = new Move(new Point(piece[0]-'0', piece[1]-'0'),new Point(piece[3]-'0', piece[4]-'0'), flag);
+				move = new Move(new Point(piece[0]-'0', piece[1]-'0'),new Point(piece[2]-'0', piece[3]-'0'), flag);
 			}
 		
 			if(!currentState.isLegalMove(move, this.isBlack)){
