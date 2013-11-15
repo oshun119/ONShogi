@@ -34,8 +34,7 @@ public class Ou extends Piece {
 
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return Ou.movePattern;
 	}
 
 	@Override

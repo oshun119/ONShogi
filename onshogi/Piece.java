@@ -72,4 +72,19 @@ abstract public class Piece {
 	 * @return この駒が，成った後の駒のインスタンス
 	 */
 	abstract public Piece getPromoted();
+	
+	public static boolean equals(Piece piece1, Piece piece2) {
+		return piece1.toString() == piece2.toString();
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if(!(other instanceof Piece)) return false;
+		return Piece.equals(this, (Piece)other);
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
 }

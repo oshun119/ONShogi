@@ -199,7 +199,8 @@ public class State extends Object implements Cloneable {
 			Piece target = this.board[from.x][from.y];
 			
 			if(this.board[to.x][to.y] != null) {
-				capturedPieces.put(target, capturedPieces.get(target) + 1);
+				Piece aCapturedPiece = this.board[to.x][to.y].getOriginal();
+				capturedPieces.put(aCapturedPiece, capturedPieces.get(aCapturedPiece) + 1);
 			}
 			
 			if(move.hasPromoted()) {
