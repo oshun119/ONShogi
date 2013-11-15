@@ -40,7 +40,7 @@ public class Ryu extends Piece {
 	}
 
 	@Override
-	boolean hasPromoted() {
+	public boolean hasPromoted() {
 		return true;
 	}
 

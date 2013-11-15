@@ -128,7 +128,8 @@ public class State extends Object implements Cloneable {
 		if(this.board[to.x][to.y] != null)
 			return false;
 		
-		if(this.bleakCapturedPieces.get(move.getPiece()) <= 0)
+		LinkedHashMap<Piece, Integer> capturedPieces = (isBlackTurn ? this.bleakCapturedPieces : this.whiteCapturedPieces);
+		if(capturedPieces.get(move.getPiece()) <= 0)
 			return false;
 		
 		return true;
@@ -146,13 +147,15 @@ public class State extends Object implements Cloneable {
 		Point from = move.getFromPoint();
 		Point to = move.getToPoint();
 		
+		System.out.println(from);
+		System.out.println(to);
+		
 		if(State.isOutOfBoard(from) || State.isOutOfBoard(to))
 			return false;
 		
 		Point amountOfMove = new Point(to.x - from.x, to.y - from.y);
 		Piece target = this.board[from.x][from.y];
 		
-		System.out.println(target.getMovePattern());
 		if(target == null || target.isBlackPiece() != isBlackTurn || !target.getMovePattern().contains(amountOfMove))
 			return false;
 		
@@ -178,7 +181,7 @@ public class State extends Object implements Cloneable {
 	}
 	
 	public static boolean isOutOfBoard(Point point) {
-		return point.x <= 1 || point.y <= 1 || point.x > State.SIZE || point.y > State.SIZE;
+		return point.x < 1 || point.y < 1 || point.x > State.SIZE || point.y > State.SIZE;
 	}
 
 	/**

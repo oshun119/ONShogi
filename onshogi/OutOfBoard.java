@@ -22,7 +22,7 @@ public class OutOfBoard extends Piece {
 	}
 
 	@Override
-	boolean hasPromoted() {
+	public boolean hasPromoted() {
 		return false;
 	}
 

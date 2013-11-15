@@ -42,7 +42,7 @@ public class To extends Piece {
 	}
 
 	@Override
-	boolean hasPromoted() {
+	public boolean hasPromoted() {
 		return true;
 	}
 

@@ -31,7 +31,7 @@ abstract public class Piece {
 	 * この駒が成っているか否かを応答する．
 	 * @return この駒が成っているか否か．
 	 */
-	abstract boolean hasPromoted();
+	abstract public boolean hasPromoted();
 
 	/**
 	 * この駒が先手の駒か否かを応答する．

@@ -44,7 +44,7 @@ public class Kyosha extends Piece {
 	}
 
 	@Override
-	boolean hasPromoted() {
+	public boolean hasPromoted() {
 		return false;
 	}
 

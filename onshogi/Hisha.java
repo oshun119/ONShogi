@@ -35,7 +35,7 @@ public class Hisha extends Piece {
 	}
 
 	@Override
-	boolean hasPromoted() {
+	public boolean hasPromoted() {
 		return false;
 	}
 

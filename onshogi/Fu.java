@@ -41,7 +41,7 @@ public class Fu extends Piece {
 	}
 
 	@Override
-	boolean hasPromoted() {
+	public boolean hasPromoted() {
 		return false;
 	}
 

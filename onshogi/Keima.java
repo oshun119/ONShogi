@@ -42,7 +42,7 @@ public class Keima extends Piece {
 	}
 
 	@Override
-	boolean hasPromoted() {
+	public boolean hasPromoted() {
 		return false;
 	}
 
