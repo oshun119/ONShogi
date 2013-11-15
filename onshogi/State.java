@@ -123,7 +123,7 @@ public class State extends Object implements Cloneable {
 	 * @param move 判定したい手．
 	 * @return moveが合法手か否か．
 	 */
-	public boolean isLegalMove(Move move) {
+	public boolean isLegalMove(Move move, boolean isBlackTurn) {
 		return false;
 	}
 

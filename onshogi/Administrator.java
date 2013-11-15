@@ -72,7 +72,7 @@ public class Administrator extends Object implements Runnable {
 			else
 				nextMove = this.whitePlayer.nextMove(this.currentState.clone());
 			
-			if(!this.currentState.isLegalMove(nextMove)) {
+			if(!this.currentState.isLegalMove(nextMove, this.isBlackTurn)) {
 				System.out.println("不正な手が入力されました．");
 				break;
 			}
