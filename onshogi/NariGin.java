@@ -8,6 +8,25 @@ import java.util.HashSet;
  * @author nisshy
  */
 public class NariGin extends Piece {
+	private static HashSet<Point> blackMovePattern;
+	
+	private static HashSet<Point> whiteMovePattern;
+	
+	static {
+		NariGin.blackMovePattern = new HashSet<Point>();
+		NariGin.whiteMovePattern = new HashSet<Point>();
+		
+		for(int x = -1; x <= 1; x++) {
+			for(int y = 0; y <= 1; y++) {
+				NariGin.blackMovePattern.add(new Point(x, -y));
+				NariGin.whiteMovePattern.add(new Point(x, y));
+			}
+		}
+
+		NariGin.blackMovePattern.add(new Point(0, 1));
+		NariGin.whiteMovePattern.add(new Point(0, -1));
+	}
+	
 	/**
 	 * 成銀のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
@@ -18,8 +37,7 @@ public class NariGin extends Piece {
 
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return this.isBlackPiece ? NariGin.blackMovePattern : NariGin.whiteMovePattern;
 	}
 
 	@Override
@@ -34,7 +52,7 @@ public class NariGin extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return new Gin(this.isBlackPiece);
+		return new Gin(!this.isBlackPiece);
 	}
 
 	@Override

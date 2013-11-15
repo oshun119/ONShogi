@@ -9,6 +9,25 @@ import java.util.HashSet;
  * @author nisshy
  */
 public class To extends Piece {
+	private static HashSet<Point> blackMovePattern;
+	
+	private static HashSet<Point> whiteMovePattern;
+	
+	static {
+		To.blackMovePattern = new HashSet<Point>();
+		To.whiteMovePattern = new HashSet<Point>();
+		
+		for(int x = -1; x <= 1; x++) {
+			for(int y = 0; y <= 1; y++) {
+				To.blackMovePattern.add(new Point(x, -y));
+				To.whiteMovePattern.add(new Point(x, y));
+			}
+		}
+
+		To.blackMovePattern.add(new Point(0, 1));
+		To.whiteMovePattern.add(new Point(0, -1));
+	}
+	
 	/**
 	 * と金のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
@@ -19,8 +38,7 @@ public class To extends Piece {
 	
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return this.isBlackPiece ? To.blackMovePattern : To.whiteMovePattern;
 	}
 
 	@Override
@@ -35,7 +53,7 @@ public class To extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return new Fu(this.isBlackPiece);
+		return new Fu(!this.isBlackPiece);
 	}
 
 	@Override

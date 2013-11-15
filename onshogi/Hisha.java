@@ -8,6 +8,19 @@ import java.util.HashSet;
  * @author nisshy
  */
 public class Hisha extends Piece {
+	
+	private static HashSet<Point> movePattern;
+	
+	static {
+		Hisha.movePattern = new HashSet<Point>();
+		for(int i = 1; i < State.SIZE; i++) {
+			Hisha.movePattern.add(new Point(i, 0));
+			Hisha.movePattern.add(new Point(-i, 0));
+			Hisha.movePattern.add(new Point(0, i));
+			Hisha.movePattern.add(new Point(0, -i));
+		}
+	}
+	
 	/**
 	 * 飛車のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
@@ -18,8 +31,7 @@ public class Hisha extends Piece {
 
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return Hisha.movePattern;
 	}
 
 	@Override
@@ -34,7 +46,7 @@ public class Hisha extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return this;
+		return new Hisha(!this.isBlackPiece);
 	}
 	
 	@Override

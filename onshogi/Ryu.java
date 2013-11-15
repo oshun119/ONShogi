@@ -9,6 +9,23 @@ import java.util.HashSet;
  * @author nisshy
  */
 public class Ryu extends Piece {
+	private static HashSet<Point> movePattern;
+	
+	static {
+		Ryu.movePattern = new HashSet<Point>();
+		for(int i = 1; i < State.SIZE; i++) {
+			Ryu.movePattern.add(new Point(i, 0));
+			Ryu.movePattern.add(new Point(-i, 0));
+			Ryu.movePattern.add(new Point(0, i));
+			Ryu.movePattern.add(new Point(0, -i));
+		}
+		
+		Ryu.movePattern.add(new Point(1, 1));
+		Ryu.movePattern.add(new Point(1, -1));
+		Ryu.movePattern.add(new Point(-1, -1));
+		Ryu.movePattern.add(new Point(-1, 1));
+	}
+		
 	/**
 	 * 龍のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
@@ -19,8 +36,7 @@ public class Ryu extends Piece {
 	
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return Ryu.movePattern;
 	}
 
 	@Override
@@ -35,7 +51,7 @@ public class Ryu extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return new Hisha(this.isBlackPiece);
+		return new Hisha(!this.isBlackPiece);
 	}
 
 	@Override

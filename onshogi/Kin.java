@@ -8,6 +8,25 @@ import java.util.HashSet;
  * @author nisshy
  */
 public class Kin extends Piece {
+	private static HashSet<Point> blackMovePattern;
+	
+	private static HashSet<Point> whiteMovePattern;
+	
+	static {
+		Kin.blackMovePattern = new HashSet<Point>();
+		Kin.whiteMovePattern = new HashSet<Point>();
+		
+		for(int x = -1; x <= 1; x++) {
+			for(int y = 0; y <= 1; y++) {
+				Kin.blackMovePattern.add(new Point(x, -y));
+				Kin.whiteMovePattern.add(new Point(x, y));
+			}
+		}
+
+		Kin.blackMovePattern.add(new Point(0, 1));
+		Kin.whiteMovePattern.add(new Point(0, -1));
+	}
+	
 	/**
 	 * 金のインスタンスを生成する．
 	 * @param isBlackPiece この駒が先手番の駒か否か
@@ -18,8 +37,7 @@ public class Kin extends Piece {
 
 	@Override
 	HashSet<Point> getMovePattern() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return this.isBlackPiece ? Kin.blackMovePattern : Kin.whiteMovePattern;
 	}
 
 	@Override
@@ -34,7 +52,7 @@ public class Kin extends Piece {
 
 	@Override
 	public Piece getOriginal() {
-		return this;
+		return new Kin(!this.isBlackPiece);
 	}
 
 	@Override
