@@ -1,5 +1,6 @@
 package onshogi;
 
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -117,6 +118,21 @@ public class State extends Object implements Cloneable {
 	public boolean isEnd() {
 		return false;
 	}
+	
+	public boolean isLegalKomaUti(Move move, boolean isBlackTurn) {
+		Point to = move.getToPoint();
+		
+		if(State.isOutOfBoard(to))
+			return false;
+
+		if(this.board[to.x][to.y] != null)
+			return false;
+		
+		if(this.bleakCapturedPieces.get(move.getPiece()) <= 0)
+			return false;
+		
+		return true;
+	}
 
 	/**
 	 * 今の状態に対して，指定された手が合法手かを判定して応答する．
@@ -124,14 +140,74 @@ public class State extends Object implements Cloneable {
 	 * @return moveが合法手か否か．
 	 */
 	public boolean isLegalMove(Move move, boolean isBlackTurn) {
-		return false;
+		if(move.getPiece() != null)
+			return this.isLegalKomaUti(move, isBlackTurn);
+		
+		Point from = move.getFromPoint();
+		Point to = move.getToPoint();
+		
+		if(State.isOutOfBoard(from) || State.isOutOfBoard(to))
+			return false;
+		
+		Point amountOfMove = new Point(to.x - from.x, to.y - from.y);
+		Piece target = this.board[from.x][from.y];
+		
+		if(target == null || target.isBlackPiece() != isBlackTurn || !target.getMovePattern().contains(amountOfMove))
+			return false;
+		
+		if(amountOfMove.x == amountOfMove.y || amountOfMove.x == 0 || amountOfMove.y == 0) {
+			int maxXY = Math.max(amountOfMove.x, amountOfMove.y);
+			int deltaX = amountOfMove.x / maxXY;
+			int deltaY = amountOfMove.y / maxXY;
+			
+			Point current = new Point(from);
+			for(current.translate(deltaX, deltaY); !current.equals(to); current.translate(deltaX, deltaY)) {
+				if(this.board[current.x][current.y] != null)
+					return false;
+			}
+		}
+		
+		if(move.hasPromoted()) {
+			int toY = (isBlackTurn ? to.y : State.SIZE - to.y + 1);
+			if(toY > 3 || target.hasPromoted())
+				return false;
+		}
+		
+		return true;
+	}
+	
+	public static boolean isOutOfBoard(Point point) {
+		return point.x <= 1 || point.y <= 1 || point.x > State.SIZE || point.y > State.SIZE;
 	}
 
 	/**
 	 * 手を適用して，状態を変化させる．
+	 * 予め，isLegalMove()で，moveの検査をすること．
 	 * @param move 適用する手．
 	 */
-	public void makeAMove(Move move) {
+	public void makeAMove(Move move, boolean isBlackTurn) {
+		LinkedHashMap<Piece, Integer> capturedPieces = (isBlackTurn ? this.bleakCapturedPieces : this.whiteCapturedPieces);
+		Point from = move.getFromPoint();
+		Point to = move.getToPoint();
+
+		if(move.getPiece() != null) { // 駒打ち
+			capturedPieces.put(move.getPiece(), capturedPieces.get(move.getPiece()) - 1);
+			this.board[to.x][to.y] = move.getPiece(); 
+		}
+		else { // 駒を動かす．
+			Piece target = this.board[from.x][from.y];
+			
+			if(this.board[to.x][to.y] != null) {
+				capturedPieces.put(target, capturedPieces.get(target) + 1);
+			}
+			
+			if(move.hasPromoted()) {
+				target = target.getPromoted();
+			}
+			
+			this.board[to.x][to.y] = target;
+			this.board[from.x][from.y] = null; 
+		}
 	}
 	
 	/**

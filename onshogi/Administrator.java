@@ -77,7 +77,7 @@ public class Administrator extends Object implements Runnable {
 				break;
 			}
 			
-			this.currentState.makeAMove(nextMove);
+			this.currentState.makeAMove(nextMove, this.isBlackTurn);
 			this.isBlackTurn = !this.isBlackTurn;
 			System.out.println(this);
 		}
